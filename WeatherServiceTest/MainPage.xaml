@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WeatherServiceTest.ViewModels"
+             x:Class="WeatherServiceTest.MainPage" x:DataType="viewModels:MainPageViewModel">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <VerticalStackLayout VerticalOptions="Center" Grid.Row="0">
+                <Label HorizontalOptions="Center"  FontSize="Medium" Text="Current Temperature"></Label>
+                <Label HorizontalOptions="Center" FontSize="Large" Text="{Binding Temperature}"></Label>
+            </VerticalStackLayout>
+            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center" Grid.Row="1">
+                <Label HorizontalOptions="Center"  FontSize="Medium" Text="Feels Like"></Label>
+                <Label HorizontalOptions="Center" FontSize="Medium" Text="{Binding FeelsLike}"></Label>
+            </HorizontalStackLayout>
+            <Label HorizontalOptions="Center" FontSize="Large" Grid.Row="2" Text="{Binding Description}" />
+            <Label HorizontalOptions="Center" Grid.Row="3">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Last updated:"></Span>
+                        <Span Text="{Binding LastUpdated}"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Margin="20" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" Command="{Binding EnableDisableCommand}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding NotificationsEnabled}" Value="true">
+                        <Setter Property="Text" Value="Disable Notifications"></Setter>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding NotificationsEnabled}" Value="false">
+                        <Setter Property="Text" Value="Enable Notifications"></Setter>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+        </Grid>
+        
+   
+
+</ContentPage>
